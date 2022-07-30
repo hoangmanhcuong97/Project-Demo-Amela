@@ -31,4 +31,8 @@ public class ServiceTask implements IServiceTask{
     public void remove(Long id) {
         iRepositoryTask.deleteById(id);
     }
+    @Override
+    public Page<Task> findTaskByTitle(String keyWord, Pageable pageable) {
+        return iRepositoryTask.searchTaskByTitle(keyWord, pageable);
+    }
 }

@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface GeneralService<T> {
     Page<T> findAll(Pageable pageable);
 
+    Page<T> findTaskByTitle(String keyWord, Pageable pageable);
+
     Optional<T> findById(Long id);
 
     void save(T t);

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,10 +21,17 @@ public class ControllerTask {
     private IServiceTask iServiceTask;
 
     @GetMapping("/list-task")
-    public ModelAndView showListTask(@PageableDefault(value = 5) Pageable pageable){
+    public ModelAndView showListTask(@RequestParam(name="keyWord",required = false )String keyWord
+            ,@PageableDefault(value = 5) Pageable pageable){
         ModelAndView modelAndView = new ModelAndView("/ManagerTask/task");
-        Page<Task> taskList = iServiceTask.findAll(pageable);
+        Page<Task> taskList = null;
 
+        if (StringUtils.hasText(keyWord)){
+            taskList = iServiceTask.findTaskByTitle(keyWord, pageable);
+            modelAndView.addObject("title", keyWord);
+        }else {
+            taskList = iServiceTask.findAll(pageable);
+        }
         modelAndView.addObject("taskList", taskList);
         return modelAndView;
     }

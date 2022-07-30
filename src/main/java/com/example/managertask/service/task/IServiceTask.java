@@ -12,6 +12,9 @@ public interface IServiceTask extends GeneralService<Task> {
     Page<Task> findAll(Pageable pageable);
 
     @Override
+    Page<Task> findTaskByTitle(String keyWord, Pageable pageable);
+
+    @Override
     Optional<Task> findById(Long id);
 
     @Override
