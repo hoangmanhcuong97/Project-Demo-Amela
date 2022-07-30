@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
 public class ServiceTask implements IServiceTask{
     @Autowired
@@ -19,15 +20,13 @@ public class ServiceTask implements IServiceTask{
     }
 
     @Override
-    public Optional findById(Long id) {
+    public Optional<Task> findById(Long id) {
         return iRepositoryTask.findById(id);
     }
-
     @Override
-    public Task save(Task task) {
-        return iRepositoryTask.save(task);
+    public void save(Task task) {
+        iRepositoryTask.save(task);
     }
-
     @Override
     public void remove(Long id) {
         iRepositoryTask.deleteById(id);
