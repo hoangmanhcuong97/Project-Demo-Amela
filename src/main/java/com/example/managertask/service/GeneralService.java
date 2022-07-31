@@ -10,6 +10,8 @@ public interface GeneralService<T> {
 
     Page<T> findTaskByTitle(String keyWord, Pageable pageable);
 
+    Page<T> findTaskByStatus(String status, Pageable pageable);
+
     Optional<T> findById(Long id);
 
     void save(T t);

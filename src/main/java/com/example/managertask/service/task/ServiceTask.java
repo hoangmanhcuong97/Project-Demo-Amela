@@ -35,4 +35,9 @@ public class ServiceTask implements IServiceTask{
     public Page<Task> findTaskByTitle(String keyWord, Pageable pageable) {
         return iRepositoryTask.searchTaskByTitle(keyWord, pageable);
     }
+
+    @Override
+    public Page<Task> findTaskByStatus(String status, Pageable pageable) {
+        return iRepositoryTask.searchTaskByStatus(status, pageable);
+    }
 }

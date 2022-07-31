@@ -22,15 +22,20 @@ public class ControllerTask {
 
     @GetMapping("/list-task")
     public ModelAndView showListTask(@RequestParam(name="keyWord",required = false )String keyWord
+            ,@RequestParam(name = "status",required = false) String status
             ,@PageableDefault(value = 5) Pageable pageable){
         ModelAndView modelAndView = new ModelAndView("/ManagerTask/task");
         Page<Task> taskList = null;
-
-        if (StringUtils.hasText(keyWord)){
+        if(StringUtils.hasText(keyWord)) {
             taskList = iServiceTask.findTaskByTitle(keyWord, pageable);
-            modelAndView.addObject("title", keyWord);
+            modelAndView.addObject("keyWord", keyWord);
         }else {
             taskList = iServiceTask.findAll(pageable);
+        }
+
+        if(StringUtils.hasText(status)) {
+            taskList = iServiceTask.findTaskByStatus(status, pageable);
+            modelAndView.addObject("status", status);
         }
         modelAndView.addObject("taskList", taskList);
         return modelAndView;

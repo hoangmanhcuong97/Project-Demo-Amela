@@ -35,16 +35,41 @@
               </form>
             </div>
             <div class="btn-group">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Action
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
-              </div>
+
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Status
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+
+
+                    <form th:action="@{/list-task}" method="get">
+                      <div class="search">
+                        <input type="hidden" name="status" th:value="Open"/>
+                        <button class="dropdown-item" type="submit" >Open</button>
+                      </div>
+                    </form>
+                    <form th:action="@{/list-task}" method="get">
+                      <div class="search">
+                        <input type="hidden" name="status" th:value="Inprogress"/>
+                        <button class="dropdown-item" type="submit" >Inprogress</button>
+                      </div>
+                    </form>
+                    <form th:action="@{/list-task}" method="get">
+                      <div class="search">
+                        <input type="hidden" name="status" th:value="Done"/>
+                        <button class="dropdown-item" type="submit" >Done</button>
+                      </div>
+                    </form>
+                    <form th:action="@{/list-task}" method="get">
+                      <div class="search">
+                        <button class="dropdown-item" type="submit" >All</button>
+                      </div>
+                    </form>
+
+
+
+                </div>
+
             </div>
       </div>
 

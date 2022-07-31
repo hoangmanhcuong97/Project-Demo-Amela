@@ -11,6 +11,9 @@ import java.util.List;
 
 @Repository
 public interface IRepositoryTask extends JpaRepository<Task,Long> {
-    @Query(value = "SELECT t.* FROM task t WHERE t.title LIKE ?1", nativeQuery = true)
+    @Query(value = "SELECT t FROM Task t WHERE t.title LIKE %?1% ")
     Page<Task> searchTaskByTitle(String keyWord, Pageable pageable);
+
+    @Query(value = "SELECT t FROM Task t WHERE t.status LIKE ?1")
+    Page<Task> searchTaskByStatus(String status, Pageable pageable);
 }
